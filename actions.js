@@ -196,8 +196,9 @@ function tryPlayVideo() {
     const onScreenVideos = getElementsOnScreen(Array.from(document.querySelectorAll("video, iframe")))
 
     if (onScreenVideos.length >= 2) {
-        // const rawUserInput = prompt("Multiple videos found, which one do you want to play? (Enter an integer):")
-        const parsedUserInput = +wordToNumMap[currentWord];
+        const rawUserInput = prompt("Multiple videos found, which one do you want to play? (Enter an integer):")
+        const parsedUserInput = +rawUserInput;
+        //const parsedUserInput = +wordToNumMap[currentWord];
 
 
         if (parsedUserInput <= onScreenVideos.length && parsedUserInput > 0) {
@@ -215,8 +216,9 @@ function tryPauseVideo() {
     const onScreenVideos = getElementsOnScreen(Array.from(document.querySelectorAll("video, iframe")))
 
     if (onScreenVideos.length >= 2) {
-        // const rawUserInput = prompt("Multiple videos found, which one do you want to pause? (Enter an integer):")
-        const parsedUserInput = +wordToNumMap[currentWord];
+        const rawUserInput = prompt("Multiple videos found, which one do you want to pause? (Enter an integer):")
+        const parsedUserInput = +rawUserInput;
+        // const parsedUserInput = +wordToNumMap[currentWord];
 
 
         if (parsedUserInput <= onScreenVideos.length && parsedUserInput > 0) {
@@ -243,7 +245,7 @@ function navigate() {
 
 function action (keyword) {
     currentWord = keyword;
-    switch (keyword) {
+    switch (keyword.toLowerCase()) {
         case "up":
             customScroll(0, 2);
             break;
