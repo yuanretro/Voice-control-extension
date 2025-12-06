@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Voice Extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["scripting", "tabs", "activeTab"],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ]
+}

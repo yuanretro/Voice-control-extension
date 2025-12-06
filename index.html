@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voice Control</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div class="app-title-row">
+          <div class="icon-circle">
+            <span class="mic-icon">🎤</span>
+          </div>
+          <div>
+            <h1>Voice Control</h1>
+            <p class="subtitle">Start and stop speech recognition</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="card">
+        <div class="status-row">
+          <span class="status-label">Status:</span>
+          <span id="statusText" class="status-value status-idle">
+            Idle
+          </span>
+        </div>
+
+        <div class="button-row">
+          <button id="startBtn" class="btn primary">Start</button>
+          <button id="stopBtn" class="btn outline" disabled>Stop</button>
+        </div>
+
+        <div class="hint">
+          <p>Tip: click <strong>Start</strong> and speak clearly near your mic.</p>
+        </div>
+      </main>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
