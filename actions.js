@@ -13,6 +13,12 @@ allElements.forEach((element) => {
 });
 console.log(`${navigableElements.length} nevigable elements found.`);
 
+
+function reload(){
+    window.location.reload(true);
+}
+
+
 function customScroll(direction, relativeSize)
 {
     if (direction === 0) { // up
@@ -40,30 +46,26 @@ function customScroll(direction, relativeSize)
             behavior: "smooth"
         })
     }
-    else if (direction == 4){
-        window.scrollBy({
-            top: document.body.scrollHeight,
-            left: 0,
-            behavior: "smooth"
-
-        })
-    }
-    else if (direction == 5){
-        window.scrollBy({
-            top: 0,
-            left: 0,
-            behavior: "smooth"
-
-        })
-    }
 }
 
+function scrollToBottom(){
+    window.scrollBy({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+    })
+}
+
+function scrollToTop(){
+    window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+    })
+}
 
 function getElementClosestToViewport(elements)
 {
     let closest = null;
     let closestDistance = Infinity;
-
 
     elements.forEach(el => { // loop through all elements, find distance closest to screen
         const rect = el.getBoundingClientRect();
@@ -74,7 +76,6 @@ function getElementClosestToViewport(elements)
         }
     });
 
-
     return closest;
 }
 
@@ -82,8 +83,6 @@ function getElementClosestToViewport(elements)
 function getElementsOnScreen(elements)
 {
     let toReturn = []
-
-
     elements.forEach(element => {
         const rect = element.getBoundingClientRect();
         const distance = rect.top;
@@ -104,8 +103,6 @@ function goBack(){
 function goForward(){
     history.go(1); // go forward one time (tab history)
 }
-
-
 
 
 function playVideo(activeElement)
@@ -139,8 +136,6 @@ function pauseVideo(activeElement) {
 
 
 }
-
-
 
 
 function customZoom(direction){
@@ -224,9 +219,12 @@ function tryPauseVideo() {
 }
 
 function navigate() {
+    //console.log(currentElement.href);
     const url = new URL(currentElement.href, window.location.href);
     window.location.href = url.href;
+    //console.log(url.href);
     console.log(`Navigating to ${url.href}`);
+    currentElement.onclick();
 }
 
 
@@ -271,10 +269,13 @@ function action (keyword) {
             navigate();
             break;
         case "top":
-            customScroll(4, 2);
+            scrollToTop();
             break;
-        case "bottom":
-            customScroll(5, 2);
+        case "end":
+            scrollToBottom();
+            break;
+        case "fresh":
+            reload();
             break;
     }
 }
