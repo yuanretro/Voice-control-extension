@@ -1,7 +1,20 @@
 const vh = window.innerHeight;
 const vw = window.innerWidth;
+const wordToNumMap = {
+    'zero': 0,
+    'one': 1,
+    'two': 2,
+    'three': 3,
+    'four': 4,
+    'five': 5,
+    'six': 6,
+    'seven': 7,
+    'eight': 8,
+    'nine': 9,
+    'ten' :10
+};
 
-
+let currentWord = "";
 let allElements;
 let navigableElements = [];
 
@@ -183,15 +196,15 @@ function tryPlayVideo() {
     const onScreenVideos = getElementsOnScreen(Array.from(document.querySelectorAll("video, iframe")))
 
     if (onScreenVideos.length >= 2) {
-        const rawUserInput = prompt("Multiple videos found, which one do you want to play? (Enter an integer):")
-        const parsedUserInput = +rawUserInput
+        // const rawUserInput = prompt("Multiple videos found, which one do you want to play? (Enter an integer):")
+        const parsedUserInput = +wordToNumMap[currentWord];
 
 
         if (parsedUserInput <= onScreenVideos.length && parsedUserInput > 0) {
             const activeElement = onScreenVideos[parsedUserInput - 1];
             playVideo(activeElement)
         } else {
-            alert("Invalid number, please try again!")
+            console.log("Invalid number, please try again!")
         }
     } else {
         const activeElement = getElementClosestToViewport(onScreenVideos)
@@ -202,15 +215,15 @@ function tryPauseVideo() {
     const onScreenVideos = getElementsOnScreen(Array.from(document.querySelectorAll("video, iframe")))
 
     if (onScreenVideos.length >= 2) {
-        const rawUserInput = prompt("Multiple videos found, which one do you want to pause? (Enter an integer):")
-        const parsedUserInput = +rawUserInput
+        // const rawUserInput = prompt("Multiple videos found, which one do you want to pause? (Enter an integer):")
+        const parsedUserInput = +wordToNumMap[currentWord];
 
 
         if (parsedUserInput <= onScreenVideos.length && parsedUserInput > 0) {
             const activeElement = onScreenVideos[parsedUserInput - 1];
             pauseVideo(activeElement)
         } else {
-            alert("Invalid number, please try again!")
+            console.log("Invalid number, please try again!")
         }
     } else {
         const activeElement = getElementClosestToViewport(onScreenVideos)
@@ -229,6 +242,7 @@ function navigate() {
 
 
 function action (keyword) {
+    currentWord = keyword;
     switch (keyword) {
         case "up":
             customScroll(0, 2);

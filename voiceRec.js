@@ -79,3 +79,19 @@ recognition.onend = () => {
     console.log('Speech recognition ended');
     ifStarted = false;
 };
+
+
+function updatePopupContent(data) {
+    const message = {
+        action: "updatePopup",
+        payload: data
+    };
+
+    chrome.runtime.sendMessage(message, (response) => {
+        if (chrome.runtime.lastError) {
+            console.log("Error sending message:", chrome.runtime.lastError.message);
+        } else {
+            console.log("Message sent to Popup:", response);
+        }
+    });
+}
